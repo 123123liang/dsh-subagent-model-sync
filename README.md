@@ -126,23 +126,34 @@ node tools/probe-resolver.mjs <某个会话日志文件>.zstd
 
 ## 安装
 
+### 方式一：从 GitHub 克隆后链接（推荐）
+
 ```bash
-# 从 npm 安装
-pnpm add dsh-subagent-model-sync
+git clone https://github.com/123123liang/dsh-subagent-model-sync.git
 ```
 
-或在 profile 的 `package.json` 里用本地路径：
+然后在 profile 的 `package.json` 里指向克隆目录：
 
 ```jsonc
 {
   "dependencies": {
-    "dsh-subagent-model-sync": "link:<插件目录的绝对路径>"
+    "dsh-subagent-model-sync": "link:<克隆目录的绝对路径>"
   },
   "dsh": { "profile": { "bundles": ["dsh-subagent-model-sync"] } }
 }
 ```
 
-然后重启 DSH。前端 bundle 按文件元数据算版本，**刷新页面拿不到新代码，必须重启**。
+### 方式二：从 npm 安装
+
+```bash
+pnpm add dsh-subagent-model-sync
+```
+
+同样需要把包名加入 profile 的 `dsh.profile.bundles`。
+
+---
+
+无论哪种方式，改完都要**重启 DSH**。前端 bundle 按文件元数据算版本，**刷新页面拿不到新代码**。
 
 > 本地路径请用 `link:`（包管理器创建符号链接）；**不要手工建立 Windows 目录联接（junction）**，
 > 那会让本插件的浏览器半永远进不了启动图。
