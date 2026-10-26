@@ -93,7 +93,7 @@ pnpm add dsh-subagent-model-sync
 ```jsonc
 {
   "dependencies": {
-    "dsh-subagent-model-sync": "link:/path/to/dsh-subagent-model-sync"
+    "dsh-subagent-model-sync": "link:<插件目录的绝对路径>"
   },
   "dsh": { "profile": { "bundles": ["dsh-subagent-model-sync"] } }
 }
@@ -175,6 +175,6 @@ npm test        # 或 node --test
 
 ## 图标
 
-图标由「一只阿叽的储备粮」提供。
+「一只阿叽的储备粮」
 
 [![](https://img.shields.io/badge/powered_by-dsh-4D6BFE?style=flat-square&logo=deepseek&logoColor=white)](https://github.com/deepseek-ai/deepseek-harness)
