@@ -1,7 +1,7 @@
 {
   "name": "dsh-subagent-model-sync",
   "version": "0.0.1",
-  "description": "Sync or override the LLM route of subagents, agent-team teammates and nested children from the Web GUI.",
+  "description": "Give subagents, agent-team teammates and nested children a hand-switchable model route and thinking effort, or let the parent session sync them all with one switch.",
   "type": "module",
   "main": "lib/index.js",
   "exports": {
@@ -24,14 +24,41 @@
     "dsh",
     "dsh-plugin",
     "cordis",
-    "plugin",
+    "cordis-plugin",
     "subagent",
     "agent-team",
-    "model-selection"
+    "model-selection",
+    "reasoning-effort"
   ],
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/123123liang/dsh-subagent-model-sync.git"
+  },
+  "homepage": "https://github.com/123123liang/dsh-subagent-model-sync#readme",
+  "bugs": {
+    "url": "https://github.com/123123liang/dsh-subagent-model-sync/issues"
+  },
   "engines": {
-    "node": ">=22"
+    "node": ">=22",
+    "dsh": ">=0.2.1-rc.3"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.4",
+    "@deepseek-ai/dsh-client-ui-primitives": ">=0.2.1-rc.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/dsh-client-ui-primitives": {
+      "optional": true
+    },
+    "react": {
+      "optional": true
+    },
+    "react-dom": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "jsdom": "^30.1.1",
@@ -50,6 +77,11 @@
         "@deepseek-ai/dsh-client-ui-conversation",
         "@deepseek-ai/dsh-client-ui-primitives"
       ]
+    },
+    "compatibility": {
+      "dshReleases": {
+        "0.2.1-rc.3": "compatible"
+      }
     }
   }
 }

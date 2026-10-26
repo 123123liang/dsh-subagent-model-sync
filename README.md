@@ -1,17 +1,17 @@
-<p align="center">
-  <img src="icon.svg" width="132" alt="子智能体模型切换图标">
-</p>
+<div align="center">
 
-<h1 align="center">子智能体模型切换</h1>
+<img src="icon.svg" width="120" alt="子智能体模型切换图标">
 
-<p align="center">
-  <a href="https://github.com/deepseek-ai/deepseek-harness"><img src="https://img.shields.io/badge/powered_by-dsh-4D6BFE?style=flat-square&logo=deepseek&logoColor=white" alt="powered by dsh" height="20"></a>
-</p>
+# 子智能体模型切换
 
-<p align="center">
-  DSH 插件 ｜ <code>dsh-subagent-model-sync</code> ｜ v0.0.1<br>
-  图标由「一只阿叽的储备粮」提供
-</p>
+[![npm version](https://img.shields.io/npm/v/dsh-subagent-model-sync?color=4D6BFE&label=npm)](https://www.npmjs.com/package/dsh-subagent-model-sync)
+[![license](https://img.shields.io/npm/l/dsh-subagent-model-sync?color=4D6BFE)](LICENSE)
+[![powered by dsh](https://img.shields.io/badge/powered_by-dsh-4D6BFE?style=flat-square&logo=deepseek&logoColor=white)](https://github.com/deepseek-ai/deepseek-harness)
+
+DSH 插件 ｜ `dsh-subagent-model-sync` ｜ v0.0.1<br>
+图标由「一只阿叽的储备粮」提供
+
+</div>
 
 ---
 
@@ -92,6 +92,35 @@ DSH 里子智能体的模型路由在**创建那一刻**就写进了它自己的
 
 同步开启期间，子代理面板会整体置灰并提示「需先关闭同步」——避免你设置了一个立刻会被覆盖的值。
 主会话的开关面板会提前告诉你「有 N 个子代理使用单独模型，开启同步后它们在下次请求时会被覆盖」。
+
+---
+
+## 兼容性
+
+| DSH 版本 | 状态 |
+|---|---|
+| `0.2.1-rc.3` | ✅ 已在此版本上开发并通过全部实测 |
+| 更低版本 | ❌ 不支持（`engines.dsh` 会阻止安装） |
+| 更高版本 | ⚠️ 未验证。版本范围写作 `>=0.2.1-rc.3`，可以安装，但请先看 [Releases](https://github.com/123123liang/dsh-subagent-model-sync/releases) 的兼容性说明 |
+
+**Node.js ≥ 22。**
+
+本插件依赖 DSH 的三个内部接口。**DSH 升级后如果它们变了，插件可能失效**：
+
+| 依赖的接口 | 用途 |
+|---|---|
+| `agent/request` 事件（waterfall） | 在请求发出前改写路由，这是核心机制 |
+| `sessionProjections.stateOf(session, 'modelSelection')` | 读取主会话"下一次请求将要用的路由" |
+| `session.requestHeader()` | 读取会话最近一次真实请求的路由 |
+
+仓库里带了一个兼容性自检脚本，能在升级后快速判断是否还兼容：
+
+```bash
+node tools/probe-resolver.mjs <某个会话日志文件>.zstd
+```
+
+它会用**真实日志**跑一遍生产用的解析函数。输出正常即接口未变；报错则说明上游改了，需要适配。
+发新版前建议也跑一次。
 
 ---
 
