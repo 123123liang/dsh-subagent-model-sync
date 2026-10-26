@@ -138,14 +138,43 @@ node --test
 
 ## 发布清单
 
-1. `node --test` 全绿；
-2. 改 `package.json` 的 `version`；
-3. `locale/zh.json`、`locale/en.json` 的 `meta` 与实际功能一致；
-4. `npm pack` 检查打包内容：应含 `lib/`、`locale/`、`cordis.patch.yml`、`README.md`、`icon.svg`、`LICENSE`；
-   **不应**含测试、工具、`node_modules`；
-5. `npm publish`。
+### 发版步骤
+
+```bash
+# 1. 全绿
+node --test
+
+# 2. 升版本（改 package.json 的 version，并同步 README 页首的 vX.Y.Z）
+
+# 3. 检查打包内容：应含 lib/、locale/、cordis.patch.yml、README.md、DEVELOPING.md、icon.svg、LICENSE；
+#    不应含 test/、tools/、node_modules/
+npm pack --dry-run
+
+# 4. 提交并推送
+git add -A && git commit -m "release: vX.Y.Z"
+git push origin main
+git tag vX.Y.Z && git push origin vX.Y.Z
+
+# 5. 发布到 npm
+npm publish --access public
+
+# 6. 在 GitHub 用该 tag 建 Release，正文写清支持的 DSH 版本
+```
+
+### 几个会卡住的点（都实际踩过）
+
+| 现象 | 原因与处置 |
+|---|---|
+| `npm publish` 报 403 / EOTP | npm 对**发布**强制 2FA。若验证器配对有问题，用浏览器授权：`npm publish` 会打印 `https://www.npmjs.com/auth/cli/<uuid>`，在浏览器里点授权即可，**不要**加 `--otp` |
+| 发布成功但 `npm view` 还是旧版本 | registry 有几十秒到几分钟的处理延迟，`latest` 不会立刻更新；`Invoke-WebRequest` 轮询 tarball 或稍等 |
+| `cannot publish over the previously published versions` | npm 不允许覆盖已发布版本，**必须升版本号**再发 |
+| 插件页没有图标 | `package.json` 必须有 `icon` 字段（如 `"icon": "icon.svg"`）。缺失时管理器会退回去解析 `<包名>/icon` 这个导出路径，而 `exports` 里没有就会拿不到 |
+| 插件页标题/描述是英文 | 缺 `locale/en.json` 的 `meta.title` / `meta.description`。文件名即语言 id，必须与 `en.json` 同目录 |
+| `git push` 报 SSL / Connection reset | 网络偶发。重试 git；仍不通时可改用 GitHub REST API 逐个复刻提交（注意校验 blob/tree/commit 的 SHA 与本地一致） |
+| README 徽章版本滞后 | shields.io 已更新，但 GitHub 的图片代理会缓存旧图，硬刷新或等几分钟 |
 
 ### 提交信息里不要出现的东西
 
 会话 id、本机绝对路径、真实渠道名与模型名、任何账号或密钥。
 测试夹具请使用 `provider-a` / `model-x` 这类中性命名。
+
