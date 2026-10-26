@@ -8,7 +8,7 @@
 [![license](https://img.shields.io/npm/l/dsh-subagent-model-sync?color=4D6BFE)](LICENSE)
 [![powered by dsh](https://img.shields.io/badge/powered_by-dsh-4D6BFE?style=flat-square&logo=deepseek&logoColor=white)](https://github.com/deepseek-ai/deepseek-harness)
 
-DSH 插件 ｜ `dsh-subagent-model-sync` ｜ v0.0.1<br>
+DSH 插件 ｜ `dsh-subagent-model-sync` ｜ v0.0.2<br>
 「一只阿叽的储备粮」
 
 </div>

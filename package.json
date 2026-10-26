@@ -1,7 +1,8 @@
 {
   "name": "dsh-subagent-model-sync",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Give subagents, agent-team teammates and nested children a hand-switchable model route and thinking effort, or let the parent session sync them all with one switch.",
+  "icon": "icon.svg",
   "type": "module",
   "main": "lib/index.js",
   "exports": {
