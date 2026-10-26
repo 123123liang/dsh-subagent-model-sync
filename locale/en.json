@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Subagent Model Switch (dsh-subagent-model-sync)",
+    "description": "Give subagents, agent-team teammates and nested children a hand-switchable model route with thinking effort, or let the parent session sync them all with one switch. Recovers delegated sessions stranded by an unavailable provider or exhausted quota."
+  }
+}

@@ -1,0 +1,11 @@
+# 依赖
+node_modules/
+
+# 运行时产物
+*.log
+*.tmp
+.DS_Store
+
+# 本地偏好 / 临时探查
+tmp/
+*.local.json
