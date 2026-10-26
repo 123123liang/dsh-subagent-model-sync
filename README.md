@@ -9,7 +9,7 @@
 [![powered by dsh](https://img.shields.io/badge/powered_by-dsh-4D6BFE?style=flat-square&logo=deepseek&logoColor=white)](https://github.com/deepseek-ai/deepseek-harness)
 
 DSH 插件 ｜ `dsh-subagent-model-sync` ｜ v0.0.1<br>
-图标由「一只阿叽的储备粮」提供
+「一只阿叽的储备粮」
 
 </div>
 
