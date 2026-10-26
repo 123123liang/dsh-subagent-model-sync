@@ -1,7 +1,21 @@
-# 子智能体模型切换
+<p align="center">
+  <img src="icon.svg" width="132" alt="子智能体模型切换图标">
+</p>
 
-> DSH 插件：给子智能体、团队队友和嵌套后代一个**可手动切换的模型入口**。
-> 插件名 `dsh-subagent-model-sync`，当前版本 `0.0.1`。
+<h1 align="center">子智能体模型切换</h1>
+
+<p align="center">
+  <a href="https://github.com/deepseek-ai/deepseek-harness"><img src="https://img.shields.io/badge/powered_by-dsh-4D6BFE?style=flat-square&logo=deepseek&logoColor=white" alt="powered by dsh" height="20"></a>
+</p>
+
+<p align="center">
+  DSH 插件 ｜ <code>dsh-subagent-model-sync</code> ｜ v0.0.1<br>
+  图标由「一只阿叽的储备粮」提供
+</p>
+
+---
+
+给子智能体、团队队友和嵌套后代一个**可手动切换的模型入口**。
 
 DSH 里子智能体的模型路由在**创建那一刻**就写进了它自己的会话记录，之后主会话怎么切模型都影响不到它。
 本插件把切换权交给用户：在子代理的输入框右下角直接选模型、选思考强度，也可以让主会话一键同步全部子代理。
@@ -171,10 +185,3 @@ npm test        # 或 node --test
 从 profile 的 `bundles` 与依赖中移除，重启即可。
 偏好文件位于 DSH 数据目录下的 `storages` 子目录中，可一并删除，也可保留（重装后仍会读回）。
 
----
-
-## 图标
-
-「一只阿叽的储备粮」
-
-[![](https://img.shields.io/badge/powered_by-dsh-4D6BFE?style=flat-square&logo=deepseek&logoColor=white)](https://github.com/deepseek-ai/deepseek-harness)
